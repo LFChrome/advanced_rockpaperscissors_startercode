@@ -1,1 +1,13 @@
-
+body {
+    background-color: black;
+    font-family: 'Dancing Script', cursive;
+    color: white;
+    margin: 15px;
+    text-align: center;
+}
+p {
+    font-size: 20px;
+}
+h1 {
+    padding-top: 10px;
+}
