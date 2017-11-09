@@ -18,13 +18,6 @@
 //******************TEST EARLY AND OFTEN USING console.log() ******************
 //****************** SERIOUSLY TEST USING console.log()!!! ******************
 
-//GLOBAL VARIABLES
-
-
-
-//FUNCTIONS
-
-
-
-// DOCUMENT READY FUNCTION
-
+$(document).ready(function(){
+        
+});
