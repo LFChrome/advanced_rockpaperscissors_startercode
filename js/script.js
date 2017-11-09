@@ -17,7 +17,55 @@
 // *************************** YOUR CODE BELOW *******************************
 //******************TEST EARLY AND OFTEN USING console.log() ******************
 //****************** SERIOUSLY TEST USING console.log()!!! ******************
+// Global variables
+var game = {
+        userChoice: '',
+        cpuChoice: '',
+        result: 0,
+        textResult: '',
+};
+// CPU's choice
+function cpuChoice() {
+        var random = Math.floor(Math.random() * 3) + 1;
+        // 1 = Quartz
+        // 2 = Parchment
+        // 3 = Shears
+        game.cpuChoice = random;
+}
+// User's choice
+function userChoice() {
+        var input = $('#input').val();
+        if (input === 'quartz') {
+                game.userChoice = 5;
+        } else if (input === 'parchment') {
+                game.userChoice = 7;
+        } else if (input === 'shears') {
+                game.userChoice = 11;
+        } else {
+                game.userChoice = 0;
+        }
+}
+// Make result
+function result() {
+        game.result = game.cpuChoice * game.userChoice; 
+}
+// Show result
+function gameResult() {
+        if (game.result === 0) {
+                game.textResult =
+                'You have not declared a choice, your enemy has obliterated you with his weapon'
+        }
 
+        console.log(game.textResult);
+}
+// JQUERY Here
 $(document).ready(function(){
+// Run game
+$('#select').click(function(){
+        userChoice();
+        cpuChoice();
+        result();
+        gameResult();
+});
         
 });
