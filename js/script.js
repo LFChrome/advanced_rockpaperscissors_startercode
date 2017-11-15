@@ -44,28 +44,5 @@ function userChoice() {
         } else {
                 game.userChoice = 0;
         }
-}
-// Make result
-function result() {
-        game.result = game.cpuChoice * game.userChoice; 
-}
-// Show result
-function gameResult() {
-        if (game.result === 0) {
-                game.textResult =
-                'You have not declared a choice, your enemy has obliterated you with his weapon'
-        }
+}        
 
-        console.log(game.textResult);
-}
-// JQUERY Here
-$(document).ready(function(){
-// Run game
-$('#select').click(function(){
-        userChoice();
-        cpuChoice();
-        result();
-        gameResult();
-});
-        
-});
