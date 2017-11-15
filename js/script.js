@@ -18,6 +18,7 @@
 //******************TEST EARLY AND OFTEN USING console.log() ******************
 //****************** SERIOUSLY TEST USING console.log()!!! ******************
 // Global variables
+$(document).ready(function() {
 
 var game = {
         userChoice: '',
@@ -51,4 +52,6 @@ function userChoice() {
 
 $('#select').click(function() {
         userChoice();
+});
+
 });
