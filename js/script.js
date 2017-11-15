@@ -44,5 +44,9 @@ function userChoice() {
         } else {
                 game.userChoice = 0;
         }
+        console.log(game.userChoice);
 }        
 
+$('#button').click(function() {
+        userChoice();
+});
