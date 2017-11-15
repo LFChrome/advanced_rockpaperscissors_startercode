@@ -18,6 +18,7 @@
 //******************TEST EARLY AND OFTEN USING console.log() ******************
 //****************** SERIOUSLY TEST USING console.log()!!! ******************
 // Global variables
+
 var game = {
         userChoice: '',
         cpuChoice: '',
@@ -25,6 +26,7 @@ var game = {
         textResult: '',
 };
 // CPU's choice
+
 function cpuChoice() {
         var random = Math.floor(Math.random() * 3) + 1;
         // 1 = Quartz
@@ -47,6 +49,6 @@ function userChoice() {
         console.log(game.userChoice);
 }        
 
-$('#button').click(function() {
+$('#select').click(function() {
         userChoice();
 });
