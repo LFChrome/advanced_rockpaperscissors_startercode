@@ -17,41 +17,46 @@
 // *************************** YOUR CODE BELOW *******************************
 //******************TEST EARLY AND OFTEN USING console.log() ******************
 //****************** SERIOUSLY TEST USING console.log()!!! ******************
-// Global variables
+
 $(document).ready(function() {
 
 var game = {
-        userChoice: '',
-        cpuChoice: '',
-        result: 0,
-        textResult: '',
+        user: [1, 2, 3, 0],
+        cpu: [5, 7, 11]
 };
+var cpuChoice = 0;
+var userChoice = 0;
 // CPU's choice
-
 function cpuChoice() {
-        var random = Math.floor(Math.random() * 3) + 1;
-        // 1 = Quartz
-        // 2 = Parchment
-        // 3 = Shears
-        game.cpuChoice = random;
+        // 0 = Quartz
+        // 1 = Parchment
+        // 2 = Shears
+        cpuChoice = game.cpu[Math.floor(Math.random() * 3)];
 }
 // User's choice
 function userChoice() {
-        var input = $('#input').val();
+        var choice = $('#input').val();
+        var input = choice.toLowerCase();
         if (input === 'quartz') {
-                game.userChoice = 5;
+                userChoice = game.user[0];
         } else if (input === 'parchment') {
-                game.userChoice = 7;
+                userChoice = game.user[1];
         } else if (input === 'shears') {
-                game.userChoice = 11;
+                userChoice = game.user[2];
         } else {
-                game.userChoice = 0;
+                userChoice = game.user[3];
         }
-        console.log(game.userChoice);
 }        
-
+// Result
+function result() {
+        if () {
+                
+        }
+}
 $('#select').click(function() {
         userChoice();
+        cpuChoice();
+        
 });
 
 });
