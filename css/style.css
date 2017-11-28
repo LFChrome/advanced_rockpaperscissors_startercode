@@ -11,3 +11,7 @@ p {
 h1 {
     padding-top: 10px;
 }
+#results {
+    margin: 0 auto;
+    margin-top: 50px;
+}

@@ -21,42 +21,81 @@
 $(document).ready(function() {
 
 var game = {
-        user: [1, 2, 3, 0],
-        cpu: [5, 7, 11]
+        user: ['n','q','p','s'], 
+        cpu: ['q','p','s']
 };
+
 var cpuChoice = 0;
 var userChoice = 0;
+var gameResult = 0;
+
+var quartz = {
+        win: "Your enemy, using his shears, cut the spacetime and tried to escape; you shot an extra-dimensional laser, traveling across the multiverse and deconstructing your target.",
+        tie: "You and your enemy pulled the quartz at the same time, you fired a laser form the tip of your quartz, however your enemy reflected it with his own, both of the quartzes desintegrated in the act.",
+        lose: "You canalized energy and shot a beam, but your enemy's parchment quickly activated: ARS ARCANUM! A shining radiance vaporazed the laser, the quartz, and sent you to oblivion."
+};
+
+var parchment = {
+        win: "You quickly shim through the parchment as your enemy gathers energy; you found the right enchantment: 'deleteEnemy(); .' Your enemy suddenly disappeared from this world.",
+        tie: "",
+        lose: ""
+};
 // CPU's choice
-function cpuChoice() {
-        // 0 = Quartz
-        // 1 = Parchment
-        // 2 = Shears
+function cpuSelection() {
         cpuChoice = game.cpu[Math.floor(Math.random() * 3)];
 }
+
 // User's choice
-function userChoice() {
+function userSelection() {
         var choice = $('#input').val();
         var input = choice.toLowerCase();
         if (input === 'quartz') {
-                userChoice = game.user[0];
-        } else if (input === 'parchment') {
                 userChoice = game.user[1];
-        } else if (input === 'shears') {
+        } else if (input === 'parchment') {
                 userChoice = game.user[2];
-        } else {
+        } else if (input === 'shears') {
                 userChoice = game.user[3];
+        } else {
+                userChoice = game.user[0];
         }
 }        
+
 // Result
 function result() {
-        if () {
-                
+        gameResult = userChoice + cpuChoice ;
+        if (gameResult === 'qq') {
+                $('#results').html('<p>' + quartz.tie + '</p>');
+                $('#results').append('<h1>TIE</h1>');
+        } else if (gameResult === 'qp') {
+                $('#results').html('<p>' + quartz.lose + '</p>');
+                $('#results').append('<h1>DEFEAT</h1>');
+        } else if(gameResult === 'qs') {
+                $('#results').html('<p>' + quartz.win + '</p>');
+                $('#results').append('<h1>VICTORY</h1>');
+        }
+        
+        else if(gameResult === 'pq') {
+                $('#results').html('<p>' + parchment.win + '</p>');
+                $('#results').append('<h1>VICTORY</h1>');
+        } else if(gameResult === 'pp') {
+                $('#results').append('<h1>TIE</h1>');
+        } else if(gameResult === 'ps') {
+                $('#results').append('<h1>DEFEAT</h1>');
+        }
+        
+        else if(gameResult === 'sq') {
+                $('#results').append('<h1>DEFEAT</h1>');
+        } else if(gameResult === 'sp') {
+                $('#results').append('<h1>VICTORY</h1>');
+        } else if(gameResult ==='ss') {
+                $('#results').append('<h1>TIE</h1>');
         }
 }
+
 $('#select').click(function() {
-        userChoice();
-        cpuChoice();
-        
+        userSelection();
+        cpuSelection();
+        result();
 });
 
 });
