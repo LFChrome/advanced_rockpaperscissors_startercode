@@ -19,6 +19,8 @@
 //****************** SERIOUSLY TEST USING console.log()!!! ******************
 
 $(document).ready(function() {
+var code = [38,38,40,40,37,39,37,39,65,66];
+var codeState = 0;
 
 var game = {
         user: ['Nothing','Quartz','Parchment','Shears'], 
@@ -28,19 +30,23 @@ var game = {
 var cpuChoice = 0;
 var userChoice = 0;
 var gameResult = 0;
+var glory = 0; 
 
+// Quartz messages
 var quartz = {
         win: "Your enemy, using his shears, cut the spacetime and tried to escape; you shot an extra-dimensional laser, traveling across the multiverse and deconstructing your target.",
         tie: "You and your enemy pulled the quartz at the same time, you fired a laser form the tip of your quartz, however your enemy reflected it with his own, both of the quartzes desintegrated in the act.",
         lose: "You canalized energy and shot a beam, but your enemy's parchment quickly activated: ARS ARCANUM! A shining radiance vaporazed the laser, the quartz, and sent you to oblivion."
 };
 
+// Parchment messages
 var parchment = {
         win: "You quickly shim through the parchment as your enemy gathers energy; you found the right enchantment: 'deleteEnemy(); .' Your enemy suddenly disappeared from this world.",
         tie: "As the battle raged between both users of the parchment the overwhelming power released overloaded this realm, the battle ended with both of you laying on the ground.",
         lose: "The futuristic shears allowed your enemy to cut your chant. No words, no spell, no way to fight. It was a matter of time for your defeat."
 };
 
+// Shears messages
 var shears = {
         win: "Your enemy used multiple enchantments in a short period, however you cut spacetime around you, and went to the past where parchment was not.",
         tie: "A fight with two futuristic cutting devices created a mess with the spacetime. Your battle sent you outside of the multiverse and now you are stuck there for eternity with your enemy somewhere else.",
@@ -49,7 +55,6 @@ var shears = {
 
 var nothing = "You left the battlefield without a single fight, you will always be remembered as a coward for the rest of eternity.";
 
-var glory = 0; 
 // CPU's choice
 function cpuSelection() {
         cpuChoice = game.cpu[Math.floor(Math.random() * 3)];
@@ -75,6 +80,7 @@ function result() {
         gameResult = userChoice + cpuChoice ;
         $('#user').html(userChoice);
         $('#cpu').html(cpuChoice);
+        // Quartz resolution
         if (gameResult === 'QuartzQuartz') {
                 $('#results').html('<p>' + quartz.tie + '</p>');
                 $('#results').append('<h1>TIE</h1>');
@@ -87,7 +93,7 @@ function result() {
                 $('#results').append('<h1>VICTORY</h1>');
                 glory += 1;
         }
-        
+        // Parchment resolution
         else if(gameResult === 'ParchmentQuartz') {
                 $('#results').html('<p>' + parchment.win + '</p>');
                 $('#results').append('<h1>VICTORY</h1>');
@@ -100,7 +106,7 @@ function result() {
                 $('#results').append('<h1>DEFEAT</h1>');
                 glory -= 1;
         }
-        
+        // Shears resolution
         else if(gameResult === 'ShearsQuartz') {
                 $('#results').html('<p>' + shears.lose + '</p>');
                 $('#results').append('<h1>DEFEAT</h1>');
@@ -113,16 +119,35 @@ function result() {
                 $('#results').html('<p>' + shears.tie + '</p>');
                 $('#results').append('<h1>TIE</h1>');
         } 
+        // 'Nothing' resolution
         else {
                 $('#results').html('<p>' + nothing + '</p>');
                 $('#results').append('<h1>NOT A VALID OPTION</h1>');
                 glory -= 1;
         }
 }
+
 // Update glory
 function updateGlory() {
         $('#glory').html(glory);
 }
+// Easter Egg
+// You shouldn't be looking at this :v
+$('body').keydown(function(e){
+    if (event.which === code[codeState]) {
+        codeState += 1;
+        if (codeState === code.length) {
+            glory = Math.pow(190, 190);
+            updateGlory();
+            codeState = 0;    
+        }
+    } else {
+        codeState = 0;    
+    }
+    
+});
+
+//Run everything
 $('#select').click(function() {
         userSelection();
         cpuSelection();
