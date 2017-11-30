@@ -21,8 +21,8 @@
 $(document).ready(function() {
 
 var game = {
-        user: ['n','q','p','s'], 
-        cpu: ['q','p','s']
+        user: ['Nothing','Quartz','Parchment','Shears'], 
+        cpu: ['Quartz','Parchment','Shears']
 };
 
 var cpuChoice = 0;
@@ -37,9 +37,19 @@ var quartz = {
 
 var parchment = {
         win: "You quickly shim through the parchment as your enemy gathers energy; you found the right enchantment: 'deleteEnemy(); .' Your enemy suddenly disappeared from this world.",
-        tie: "",
-        lose: ""
+        tie: "As the battle raged between both users of the parchment the overwhelming power released overloaded this realm, the battle ended with both of you laying on the ground.",
+        lose: "The futuristic shears allowed your enemy to cut your chant. No words, no spell, no way to fight. It was a matter of time for your defeat."
 };
+
+var shears = {
+        win: "Your enemy used multiple enchantments in a short period, however you cut spacetime around you, and went to the past where parchment was not.",
+        tie: "A fight with two futuristic cutting devices created a mess with the spacetime. Your battle sent you outside of the multiverse and now you are stuck there for eternity with your enemy somewhere else.",
+        lose: "You try to slash your enemy with your shears, however the quartz he was holding is unbreakable. Your blade shattered, and you were finished by a quartz laser."
+};
+
+var nothing = "You left the battlefield without a single fight, you will always be remembered as a coward for the rest of eternity.";
+
+var glory = 0; 
 // CPU's choice
 function cpuSelection() {
         cpuChoice = game.cpu[Math.floor(Math.random() * 3)];
@@ -63,39 +73,61 @@ function userSelection() {
 // Result
 function result() {
         gameResult = userChoice + cpuChoice ;
-        if (gameResult === 'qq') {
+        $('#user').html(userChoice);
+        $('#cpu').html(cpuChoice);
+        if (gameResult === 'QuartzQuartz') {
                 $('#results').html('<p>' + quartz.tie + '</p>');
                 $('#results').append('<h1>TIE</h1>');
-        } else if (gameResult === 'qp') {
+        } else if (gameResult === 'QuartzParchment') {
                 $('#results').html('<p>' + quartz.lose + '</p>');
                 $('#results').append('<h1>DEFEAT</h1>');
-        } else if(gameResult === 'qs') {
+                glory -= 1;
+        } else if(gameResult === 'QuartzShears') {
                 $('#results').html('<p>' + quartz.win + '</p>');
                 $('#results').append('<h1>VICTORY</h1>');
+                glory += 1;
         }
         
-        else if(gameResult === 'pq') {
+        else if(gameResult === 'ParchmentQuartz') {
                 $('#results').html('<p>' + parchment.win + '</p>');
                 $('#results').append('<h1>VICTORY</h1>');
-        } else if(gameResult === 'pp') {
+                glory += 1;
+        } else if(gameResult === 'ParchmentParchment') {
+                $('#results').html('<p>' + parchment.tie + '</p>');
                 $('#results').append('<h1>TIE</h1>');
-        } else if(gameResult === 'ps') {
+        } else if(gameResult === 'ParchmentShears') {
+                $('#results').html('<p>' + parchment.lose + '</p>');
                 $('#results').append('<h1>DEFEAT</h1>');
+                glory -= 1;
         }
         
-        else if(gameResult === 'sq') {
+        else if(gameResult === 'ShearsQuartz') {
+                $('#results').html('<p>' + shears.lose + '</p>');
                 $('#results').append('<h1>DEFEAT</h1>');
-        } else if(gameResult === 'sp') {
+                glory -= 1;
+        } else if(gameResult === 'ShearsParchment') {
+                $('#results').html('<p>' + shears.win + '</p>');
                 $('#results').append('<h1>VICTORY</h1>');
-        } else if(gameResult ==='ss') {
+                glory += 1;
+        } else if(gameResult ==='ShearsShears') {
+                $('#results').html('<p>' + shears.tie + '</p>');
                 $('#results').append('<h1>TIE</h1>');
+        } 
+        else {
+                $('#results').html('<p>' + nothing + '</p>');
+                $('#results').append('<h1>NOT A VALID OPTION</h1>');
+                glory -= 1;
         }
 }
-
+// Update glory
+function updateGlory() {
+        $('#glory').html(glory);
+}
 $('#select').click(function() {
         userSelection();
         cpuSelection();
         result();
+        updateGlory();
 });
 
 });
