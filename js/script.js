@@ -58,8 +58,6 @@ $(document).ready(function() {
     lose: "You try to slash your enemy with your shears, however the quartz he was holding is unbreakable. Your blade shattered, and you were finished by a quartz laser."
   };
 
-  // Message if you do anything else
-  var nothing = "You left the battlefield without a single fight, you will always be remembered as a coward for the rest of eternity.";
 //******************************Functions******************************
   // CPU's choice
   function cpuSelection() {
@@ -127,9 +125,7 @@ $(document).ready(function() {
     }
     // 'Nothing' resolution
     else {
-      $('#results').html('<p>' + nothing + '</p>');
-      $('#results').append('<h1>NOT A VALID OPTION</h1>');
-      glory -= 1;
+      alert('Your input is not valid, check your options and try again');
     }
   }
 
